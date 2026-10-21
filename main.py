@@ -1,19 +1,35 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+############################################################
+##                initial condition                       ##
+############################################################
+
 def dydx(x,y):
     return y
 
-h=0.1
+H=0.1
+Y0=1
+X0=0
+Xf=1
+
+euler = True
+r_k = True
+graphs = False
+
+############################################################
+##                        Backend                         ##
+############################################################
 
 def eulerMethod(showplot=True):
     outy = []
     outx = []
     trueouty = []
 
-    y0=1
-    x0=0
-    xf=1
+    h = H
+    y0 = Y0
+    x0 = X0
+    xf = Xf
 
     while(True):
         if (x0 < xf-h):
@@ -43,9 +59,10 @@ def rungekutta(showplot=True):
     outx = []
     trueouty = []
 
-    y0=1
-    x0=0
-    xf=1
+    h = H
+    y0 = Y0
+    x0 = X0
+    xf = Xf
 
     while(True):
         if (x0 < xf-h):
@@ -53,7 +70,6 @@ def rungekutta(showplot=True):
             k2 = h * dydx(x0 + h / 2, y0 + k1 / 2)
             k3 = h * dydx(x0 + h / 2, y0 + k2 / 2)
             k4 = h * dydx(x0 + h, y0 + k3)
-
             y0 = y0 + (k1 + 2 * k2 + 2 * k3 + k4) / 6
             x0 = x0 + h
 
@@ -62,7 +78,6 @@ def rungekutta(showplot=True):
             trueouty.append(np.power(np.e, x0))
         else:
             break
-
     print("RUNGE KUTTA")
     print("Estimated Value:", outy[-1])
     print("True Value:", trueouty[-1])
@@ -76,5 +91,7 @@ def rungekutta(showplot=True):
         plt.show()
 
 if __name__ == "__main__":
-    # eulerMethod(False)
-    rungekutta(False)
+    if euler:
+        eulerMethod(graphs) 
+    if r_k:
+        rungekutta(graphs)
