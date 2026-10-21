@@ -46,6 +46,7 @@ def eulerMethod(showplot=True):
     print("True Value:", trueouty[-1])
     print("Error: ", trueouty[-1] - outy[-1])
     print("Amount of Ticks:", (xf - x0) / h)
+    print()
 
     
     if (showplot):
@@ -83,6 +84,7 @@ def rungekutta(showplot=True):
     print("True Value:", trueouty[-1])
     print("Error: ", trueouty[-1] - outy[-1])
     print("Amount of Ticks:", (xf - x0) / h)
+    print()
 
     if (showplot):
         fig, ax = plt.subplots()
